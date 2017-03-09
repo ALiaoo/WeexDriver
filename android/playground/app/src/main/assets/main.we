@@ -1,0 +1,11 @@
+<template>
+  <div>
+    <text class="text">Hello Weex!</text>
+  </div>
+</template>
+
+<style>
+  .text {
+    color: red
+  }
+</style>
