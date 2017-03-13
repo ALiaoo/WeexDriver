@@ -1,0 +1,29 @@
+<template>
+  <div class="wrapper">
+    <p>nihao</p>
+    <div>
+      <image class="tab-icon" src="images/search.png"></image>
+      <span>外卖</span>
+    </div>
+
+  </div>
+</template>
+
+<script>
+    module.exports = {
+        data: {},
+        methods: {}
+    }
+</script>
+
+<style>
+  .tab-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  span {
+    font-size: 20px;
+    color: red;
+  }
+</style>

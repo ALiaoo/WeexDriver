@@ -1,11 +1,12 @@
 <template>
   <div>
-    <text class="text">Hello Weex!</text>
+    <text class="text">Hello ALiao!</text>
   </div>
 </template>
 
 <style>
   .text {
-    color: red
+    color: red;
+    font-size: 200px;
   }
 </style>

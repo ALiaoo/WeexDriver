@@ -71,7 +71,7 @@
 	        "text"
 	      ],
 	      "attr": {
-	        "value": "Hello Weex!"
+	        "value": "Hello ALiao!"
 	      }
 	    }
 	  ]
@@ -83,7 +83,8 @@
 
 	module.exports = {
 	  "text": {
-	    "color": "#FF0000"
+	    "color": "#FF0000",
+	    "fontSize": 200
 	  }
 	}
 
