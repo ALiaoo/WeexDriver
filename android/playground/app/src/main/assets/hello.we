@@ -1,0 +1,30 @@
+<template>
+
+	  <div>
+      <text style="font-size:100px;" onclick="onClick">Hello World.</text>
+    </div>
+
+</template>
+
+<script>
+ var navigator = weex.requireModule('navigator')
+  module.exports = {
+    data: {
+      bundleUrl: '',
+    },
+    methods: {
+
+      onClick: function(e) {
+
+        this.bundleUrl = this.$getConfig().a;
+
+        this.$call('modal', 'toast', {
+                  'message': 'parmas is ' + this.bundleUrl,
+                  'duration': 2.0
+                });
+      },
+
+    }
+
+  }
+</script>

@@ -1,0 +1,44 @@
+<template>
+  <div class="biz-item">
+  <div>
+    <image class="tab-icon" src="file:///Users/liaolishuang/Develop/Web/weex/WeexDriver/src/images/search.png"></image>
+    <text>外卖</text>
+  </div>
+  <div>
+    <span>外卖</span>
+  </div>
+    <image class="biz-logo" src="https://gd2.alicdn.com/bao/uploaded/i2/T14H1LFwBcXXXXXXXX_!!0-item_pic.jpg"></image>
+    <div class="item-right">
+      <text class="biz-title">吉野家</text>
+
+    </div>
+  </div>
+</template>
+
+<style>
+	.tab-icon {
+		width: 40px;
+		height: 40px;
+	}
+
+  .biz-item {
+    flex-direction: row;
+  }
+  .biz-logo {
+    width: 200px;
+    height: 200px;
+  }
+  .item-right {
+    margin-left: 20px;
+  }
+</style>
+
+<script >
+  module.exports = {
+    data: {
+
+    },
+    methods: {}
+
+  }
+</script>

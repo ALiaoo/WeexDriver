@@ -15,10 +15,6 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
-        //加入阿里仓库，引入远程weex包
-        maven{
-            url "http://mvnrepo.alibaba-inc.com/mvn/repository"
-        }
     }
 }
 
