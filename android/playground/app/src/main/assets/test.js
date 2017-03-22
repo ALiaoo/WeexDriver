@@ -69,7 +69,7 @@
 /***/ function(module, exports) {
 
 	module.exports = {
-	  "type": "div",
+	  "type": "scroller",
 	  "children": [
 	    {
 	      "type": "slider",
@@ -91,7 +91,7 @@
 	            {
 	              "type": "image",
 	              "classList": [
-	                "img"
+	                "slider-img"
 	              ],
 	              "attr": {
 	                "src": function () {return this.pictureUrl}
@@ -1237,13 +1237,13 @@
 	      shareImg: 'https://cbu01.alicdn.com/cms/upload/2015/930/224/2422039_702806130.png_88x88xz.jpg',
 	      shareText: "10"
 	    }],
-	    itemList: [{ itemId: '520421163634', title: 'item1', pictureUrl: 'https://gd2.alicdn.com/bao/uploaded/i2/T14H1LFwBcXXXXXXXX_!!0-item_pic.jpg' }, { itemId: '522076777462', title: 'item2', pictureUrl: 'https://gd1.alicdn.com/bao/uploaded/i1/TB1PXJCJFXXXXciXFXXXXXXXXXX_!!0-item_pic.jpg' }, { itemId: '522076777462', title: 'iten3', pictureUrl: 'https://gd3.alicdn.com/bao/uploaded/i3/TB1x6hYLXXXXXazXVXXXXXXXXXX_!!0-item_pic.jpg' }]
+	    itemList: [{ itemId: '520421163634', title: 'item--1', pictureUrl: 'https://gd2.alicdn.com/bao/uploaded/i2/T14H1LFwBcXXXXXXXX_!!0-item_pic.jpg' }, { itemId: '522076777462', title: 'item--2', pictureUrl: 'https://gd1.alicdn.com/bao/uploaded/i1/TB1PXJCJFXXXXciXFXXXXXXXXXX_!!0-item_pic.jpg' }, { itemId: '522076777462', title: 'iten--3', pictureUrl: 'https://gd3.alicdn.com/bao/uploaded/i3/TB1x6hYLXXXXXazXVXXXXXXXXXX_!!0-item_pic.jpg' }]
 	  }},
 	  methods: {
 	    oncellclick: function oncellclick(e) {
 
 	      var params = {
-	        'url': 'file://assets/hello.js?a=12306',
+	        'url': 'file://assets/shop.js',
 	        'animated': 'true'
 	      };
 	      navigator.push(params, function () {});

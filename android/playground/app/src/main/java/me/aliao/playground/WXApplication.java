@@ -16,7 +16,13 @@ public class WXApplication extends Application {
   @Override
   public void onCreate() {
     super.onCreate();
-    InitConfig config=new InitConfig.Builder().setImgAdapter(new ImageAdapter()).build();
-    WXSDKEngine.initialize(this,config);
+
+//    InitConfig config=new InitConfig.Builder().setImgAdapter(new ImageAdapter()).build();
+//    WXSDKEngine.initialize(this,config);
+
+    WXSDKEngine.initialize(this,
+        new InitConfig.Builder()
+            .setImgAdapter(new ImageAdapter())
+            .build());
   }
 }

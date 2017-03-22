@@ -32,4 +32,5 @@ dependencies {
     compile 'com.android.support:design:24.1.1'
     compile 'com.alibaba:fastjson:1.1.46.android'
     compile project(path: ':weex_sdk')
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }

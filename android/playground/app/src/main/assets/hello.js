@@ -46,7 +46,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var __weex_template__ = __webpack_require__(1)
-	var __weex_script__ = __webpack_require__(2)
+	var __weex_style__ = __webpack_require__(2)
+	var __weex_script__ = __webpack_require__(3)
 
 	__weex_define__('@weex-component/8e2a728ca214c2831ef401b9169488f7', [], function(__weex_require__, __weex_exports__, __weex_module__) {
 
@@ -56,6 +57,8 @@
 	    }
 
 	    __weex_module__.exports.template = __weex_template__
+
+	    __weex_module__.exports.style = __weex_style__
 
 	})
 
@@ -69,22 +72,69 @@
 	  "type": "div",
 	  "children": [
 	    {
-	      "type": "text",
-	      "style": {
-	        "fontSize": 100
-	      },
-	      "events": {
-	        "click": "onClick"
-	      },
-	      "attr": {
-	        "value": "Hello World."
-	      }
+	      "type": "div",
+	      "classList": [
+	        "menu-wrapper"
+	      ],
+	      "children": [
+	        {
+	          "type": "div",
+	          "classList": [
+	            "menu-left"
+	          ],
+	          "children": [
+	            {
+	              "type": "text",
+	              "style": {
+	                "fontSize": 100
+	              },
+	              "attr": {
+	                "value": "menu left"
+	              }
+	            }
+	          ]
+	        },
+	        {
+	          "type": "div",
+	          "classList": [
+	            "menu-right"
+	          ],
+	          "children": [
+	            {
+	              "type": "text",
+	              "style": {
+	                "fontSize": 100
+	              },
+	              "attr": {
+	                "value": "menu right"
+	              }
+	            }
+	          ]
+	        }
+	      ]
 	    }
 	  ]
 	}
 
 /***/ },
 /* 2 */
+/***/ function(module, exports) {
+
+	module.exports = {
+	  "menu-wrapper": {
+	    "flexDirection": "row"
+	  },
+	  "menu-left": {
+	    "width": 140,
+	    "backgroundColor": "#f8f8f8"
+	  },
+	  "menu-right": {
+	    "backgroundColor": "#5838f3"
+	  }
+	}
+
+/***/ },
+/* 3 */
 /***/ function(module, exports) {
 
 	module.exports = function(module, exports, __weex_require__){'use strict';
@@ -98,7 +148,7 @@
 
 	    onClick: function onClick(e) {
 
-	      this.bundleUrl = this.$getConfig().bundleUrl;
+	      this.bundleUrl = this.$getConfig().a;
 
 	      this.$call('modal', 'toast', {
 	        'message': 'parmas is ' + this.bundleUrl,

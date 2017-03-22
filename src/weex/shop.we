@@ -1,0 +1,398 @@
+<template>
+
+	<div>
+		<div style="height: 140px; background-color: #3190e8">
+		</div>
+
+		<div class="menuWrapper">
+			<div class="menuLeft">
+				<list>
+					<cell repeat="{{menuList}}" class="menuLeftCell {{menuIndex == $index ? 'active_menu' : 'normal_menu'}}" onclick="oncellclick($index)">
+						<text style="font-size: 30px;">{{ title }}</text>
+						<text style="font-size: 30px; color: red">{{ description }}</text>
+					</cell>
+				</list>
+			</div>
+
+			<div class="menuRight">
+				<list>
+					<header>
+					  <div style="background-color: #f8f8f8; padding: 15px;">
+					    <text>current menu item name</text>
+					  </div>
+
+					</header>
+					<cell class="menuRightCell" repeat="{{item in menuList}}" >
+						<div repeat="{{(index, food) in item.foods}}" class="foodItem" id="item-{{food.id}}" onclick="onFoodItemClick($index)">
+							<image class="foodImg" src="{{food.foodImg}}"></image>
+							<wxc-panel style="margin-left: 20px">
+								<text>{{food.name}}</text>
+								<text>月售{{food.monthSale}}份    好评率{{food.rate}}%</text>
+								<text>¥{{food.price}}</text>
+								<wxc-panel class="order-panel">
+									<text id="cartDel" class="cartDel" if="{{cartNum!==0}}">-</text>
+									<text class="cartNum" if="{{cartNum!==0}}">0</text>
+									<text class="cartAdd" onclick="onAddClick">+</text>
+								</wxc-panel>
+							</wxc-panel>
+						</div>
+					</cell>
+				</list>
+			</div>
+		</div>
+
+		<wxc-panel class="footer">
+			<wxc-button class="goToBuyBtn">去结算</wxc-button>
+		</wxc-panel>
+
+	</div>
+
+</template>
+
+<style>
+  .menuWrapper {
+  	flex-direction: row;
+  }
+  .menuLeft {
+    width: 160px;
+    overflow-y: hidden;
+    background-color: #f8f8f8;
+  }
+
+  .menuLeftCell {
+		padding: 20px;
+  }
+
+  .menuRight {
+    flex: 1;
+    background-color: #fff;
+  }
+
+  .active_menu {
+    border-left-style: solid;
+    border-left-width: 10px;
+    border-left-color: #3190e8;
+		background-color: #fff;
+  }
+  .normal_menu {
+		border-left-width: 0;
+  }
+
+	.menuRightCell {
+		flex-direction: column;
+		padding: 30px;
+		border-bottom-style: solid;
+		border-bottom-width: 1px;
+		border-bottom-color:  #d5d5d5;
+	}
+
+	.foodItem {
+		flex-direction: row;
+		padding-top: 30px;
+		padding-bottom: 30px;
+		border-bottom-style: solid;
+		border-bottom-width: 1px;
+		border-bottom-color:  #d5d5d5;
+	}
+
+  .foodImg {
+		width: 160px;
+		height: 160px;
+  }
+
+  .footer {
+    position: fixed;
+    width: 750px;
+    height: 120px;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    padding: 10px;
+    background-color: #3d3d3f;
+  }
+
+  .goToBuyBtn {
+    width: 260px;
+    height: 100px;
+    text-align: center;
+    background-color: #4cd964;
+    color: #ffffff;
+		right: 0;
+		left: 0;
+    font-weight: bold;
+  }
+
+  .order-panel {
+    flex-direction: row;
+  }
+
+  .cartAdd {
+    width: 40px;
+    height: 40px;
+    background-color: #3190e8;
+    color: #fff;
+    font-size: 30px;
+    border: solid;
+    border-color: #3190e8;
+    border-radius: 50%;
+    text-align: center;
+  }
+
+  .cartNum {
+    font-size: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .cartDel {
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    color: #3190e8;
+    font-size: 30px;
+    border: solid;
+    border-color: #3190e8;
+    border-width: 2px;
+    border-radius: 50%;
+    text-align: center;
+  }
+
+
+</style>
+
+<script>
+	var navigator = weex.requireModule('navigator');
+	var modal = weex.requireModule('modal');
+	var dom = weex.requireModule('dom');
+	var animation = weex.requireModule('animation');
+  module.exports = {
+    data: {
+      menuIndex: 0, //当前选中菜单的索引值
+      cartNum: 1,
+      current_translate: '',
+      menuList: [
+				{
+					title: '周一',
+					description: '促销',
+					foods: [
+						{
+							id: '1',
+							name: '营养五香牛肉饭',
+							description: '精品牛肉+牛肉丸一个+土豆+油豆皮+胡萝卜+米饭',
+							monthSale: '576',
+							rate: '88',
+							price: '30.99',
+							foodImg: 'https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg'
+						},
+						{
+							id: '2',
+							name: '美味麻辣牛肉饭',
+							description: '精品牛肉+牛肉丸一个+土豆+油豆皮+胡萝卜+米饭',
+							monthSale: '346',
+							rate: '88',
+							price: '30.99',
+							foodImg: 'https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg'
+						},
+						{
+							id: '3',
+							name: '营养五香牛肉饭',
+							description: '精品牛肉+牛肉丸一个+土豆+油豆皮+胡萝卜+米饭',
+							monthSale: '576',
+							rate: '88',
+							price: '30.99',
+							foodImg: 'https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg'
+						},
+						{
+							id: '4',
+							name: '美味麻辣牛肉饭',
+							description: '精品牛肉+牛肉丸一个+土豆+油豆皮+胡萝卜+米饭',
+							monthSale: '346',
+							rate: '88',
+							price: '30.99',
+							foodImg: 'https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg'
+						},
+						{
+							id: '5',
+							name: '营养五香牛肉饭',
+							description: '精品牛肉+牛肉丸一个+土豆+油豆皮+胡萝卜+米饭',
+							monthSale: '576',
+							rate: '88',
+							price: '30.99',
+							foodImg: 'https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg'
+						},
+						{
+							id: '6',
+							name: '美味麻辣牛肉饭',
+							description: '精品牛肉+牛肉丸一个+土豆+油豆皮+胡萝卜+米饭',
+							monthSale: '346',
+							rate: '88',
+							price: '30.99',
+							foodImg: 'https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg'
+						},
+					]
+				},
+				{
+					title: '周二',
+					description: '促销',
+					foods: [
+						{
+							id: '7',
+							name: '五香牛肉饭套餐',
+							description: '精品牛肉+牛肉丸一个+土豆+油豆皮+胡萝卜+米饭',
+							monthSale: '18',
+							rate: '18',
+							price: '18.88',
+							foodImg: 'https://gd3.alicdn.com/bao/uploaded/i3/TB17zXOGXXXXXbEXVXXXXXXXXXX_!!0-item_pic.jpg_220x220.jpg'
+						},
+						{
+							id: '8',
+							name: '麻辣牛肉饭套餐',
+							description: '精品秘制牛肉+牛肉丸一个+土豆+油豆皮+胡萝卜+米饭',
+							monthSale: '23',
+							rate: '88',
+							price: '18.88',
+							foodImg: 'https://gd3.alicdn.com/bao/uploaded/i3/TB17zXOGXXXXXbEXVXXXXXXXXXX_!!0-item_pic.jpg_220x220.jpg'
+						},
+						{
+							id: '9',
+							name: '精品牛肉饭套餐',
+							description: '精品秘制牛肉+牛肉丸一个+土豆+油豆皮+胡萝卜+米饭',
+							monthSale: '33',
+							rate: '88',
+							price: '18.88',
+							foodImg: 'https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg'
+						},
+					]
+				},
+				{
+					title: '周三',
+					description: '促销',
+					foods: [
+						{
+							id: '10',
+							name: '营养五香牛肉饭',
+							description: '精品牛肉+牛肉丸一个+土豆+油豆皮+胡萝卜+米饭',
+							monthSale: '576',
+							rate: '88',
+							price: '30.99',
+							foodImg: 'https://gd3.alicdn.com/imgextra/i3/2265445951/TB2oXqUbFXXXXXIXXXXXXXXXXXX_!!2265445951.jpg_220x220.jpg'
+						},
+						{
+							id: '11',
+							name: '美味麻辣牛肉饭',
+							description: '精品牛肉+牛肉丸一个+土豆+油豆皮+胡萝卜+米饭',
+							monthSale: '346',
+							rate: '88',
+							price: '30.99',
+							foodImg: 'https://gd3.alicdn.com/imgextra/i3/2265445951/TB2oXqUbFXXXXXIXXXXXXXXXXXX_!!2265445951.jpg_220x220.jpg'
+						},
+					]
+				},
+				{
+					title: '周四',
+					description: '促销',
+					foods: [
+						{
+							id: '12',
+							name: '五香牛肉饭套餐',
+							description: '精品牛肉+牛肉丸一个+土豆+油豆皮+胡萝卜+米饭',
+							monthSale: '18',
+							rate: '18',
+							price: '18.88',
+							foodImg: 'https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg'
+						},
+						{
+							id: '13',
+							name: '麻辣牛肉饭套餐',
+							description: '精品秘制牛肉+牛肉丸一个+土豆+油豆皮+胡萝卜+米饭',
+							monthSale: '23',
+							rate: '88',
+							price: '18.88',
+							foodImg: 'https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg'
+						},
+					]
+				},
+				{
+					title: '周五',
+					description: '促销',
+					foods: [
+						{
+							id: '14',
+							name: '营养五香牛肉饭',
+							description: '精品牛肉+牛肉丸一个+土豆+油豆皮+胡萝卜+米饭',
+							monthSale: '576',
+							rate: '88',
+							price: '30.99',
+							foodImg: 'https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg'
+						},
+						{
+							id: '15',
+							name: '美味麻辣牛肉饭',
+							description: '精品牛肉+牛肉丸一个+土豆+油豆皮+胡萝卜+米饭',
+							monthSale: '346',
+							rate: '88',
+							price: '30.99',
+							foodImg: 'https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg'
+						},
+					]
+				}
+      ],
+
+
+    },
+    methods: {
+			showToast(msg) {
+				modal.toast({
+					message: msg,
+					duration: 0.3
+				})
+			},
+
+			anim: function(styles, timingFunction, duration, callback) {
+			  this.$call('animation', 'transition', this._ids.block.el.ref, {
+			    styles: styles,
+			    timingFunction: timingFunction,
+			    duration: duration
+			  }, callback);
+			},
+
+			oncellclick: function(index) {
+				this.menuIndex = index;
+				//1.样式-点击cell,更改样式
+				//this.showToast
+				//2.联动-foodlist要滚动到对应的位置
+				let scrollElemIndex = 0;
+				if(index - 1 >= 0) {
+					for (let [i, elem] of this.menuList.entries()) {
+						if(i < index ) {
+							scrollElemIndex = scrollElemIndex + elem.foods.length;
+						}
+					}
+				}
+				this.showToast('scrollElemIndex = '+scrollElemIndex);
+
+				dom.scrollToElement(this.$el('item-'+scrollElemIndex), {offset: 0})
+
+			},
+			onFoodItemClick: function(index) {
+			  this.showToast('click item '+this.index);
+			},
+			onAddClick: function() {
+			  this.showToast('添加-1');
+			  //点击添加的时候del按钮动画出场
+				animation.transition(this.$el('cartDel'), {
+					styles: {
+						color: '#ff44dd',
+						transform: 'translate(250px, 100px)',
+            transformOrigin: 'center center'
+					},
+					duration: 800, //ms
+					timingFunction: 'ease',
+					delay: 0 //ms
+				}, function() {
+				  this.showToast('anim finished.');
+				})
+			}
+    },
+  }
+</script>
