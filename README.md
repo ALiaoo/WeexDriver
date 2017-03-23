@@ -41,11 +41,12 @@ npm run debug
 You can config more babel, ESLint and PostCSS plugins in `webpack.config.js`.
 
 ## done
+
 模仿饿了么首页列表和商户食品列表页
-0. 首页商铺列表
-0. 商户食品列表页
-    0.点击menu的时候右侧食品列表滚动到对应项
-0. 动画
-    0. 添加食品按钮点击时的滚动效果
+
+* 首页商铺列表
+* 商户食品列表页
+* 点击menu的时候右侧食品列表滚动到对应项
+* 动画-添加食品按钮点击时的滚动效果
 
 # WeexDriver
