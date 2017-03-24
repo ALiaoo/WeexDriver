@@ -1,8 +1,16 @@
 <template>
 
 	<div>
-		<div style="height: 140px; background-color: #3190e8">
-			<text id="rect" class="cartDel" onclick="onRectAnimation">+</text>
+		<div class="shopWrapper">
+			<image class="shopBg" src="https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg" resize="resize"></image>
+			<div class="shopDetailWrapper">
+				<image class="shopImg" src="{{shopDetail.shopImg}}"></image>
+				<div>
+					<text class="shopName">{{shopDetail.name}}</text>
+					<text class="shopDesc">{{shopDetail.deliveryMethod}} | 平均{{shopDetail.deliveryTime}}分钟 | 配送费{{shopDetail.deliveryPrice}}</text>
+					<text class="shopDesc">{{shopDetail.announcement}}</text>
+				</div>
+			</div>
 		</div>
 
 		<div class="menuWrapper">
@@ -55,6 +63,43 @@
 </template>
 
 <style>
+
+	.shopWrapper {
+		width: 750px;
+		height: 300px;
+	}
+
+	.shopBg {
+		width: 750px;
+		height: 300px;
+	}
+
+	.shopDetailWrapper {
+		flex-direction: row;
+		width: 750px;
+		height: 300px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		padding: 30px;
+	}
+
+	.shopImg {
+		width: 160px;
+  	height: 160px;
+  	margin-right: 20px;
+	}
+	.shopName {
+		color: #fff;
+		font-size: 38px;
+	}
+	.shopDesc {
+  	color: #fff;
+  	font-size: 26px;
+  }
+
   .menuWrapper {
   	flex-direction: row;
   }
@@ -109,7 +154,7 @@
     position: absolute;
     flex-direction: row;
     width: 750px;
-    height: 120px;
+    height: 110px;
     bottom: 0;
     left: 0;
     z-index: 10;
@@ -128,8 +173,6 @@
     border-width: 2px;
     border-radius: 50%;
 		border-color: #ff3e33;
-		top: -20;
-		left: 20;
 		padding: 20px;
   }
 
@@ -137,6 +180,7 @@
     font-size: 30px;
     font-weight: bold;
     text-align: center;
+    left: 100px;
   }
 
   .goToBuyBtn {
@@ -220,6 +264,14 @@
       menuIndex: 0, //当前选中菜单的索引值
       cartNum: 0,
       current_translate: '',
+      shopDetail: {
+        name: '吉野家',
+        shopImg: 'https://fuss10.elemecdn.com/9/da/99e61b6978553324d485a70c67ebapng.png?imageMogr2/thumbnail/190x190/format/webp/quality/85',
+        deliveryMethod: '商家配送',
+        deliveryTime: '平均49分钟',
+        deliveryPrice: '¥7',
+        announcement: '公告: 本店只提供电子发票'
+      },
       menuList: [
 				{
 					title: '热销榜',
@@ -232,7 +284,7 @@
 							monthSale: '576',
 							rate: '88',
 							price: '30.99',
-							foodImg: 'https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg'
+							foodImg: 'https://fuss10.elemecdn.com/e/cd/11feb9696cec2a4d28feb6525545epng.png?imageMogr2/thumbnail/200x200/format/webp/quality/85'
 						},
 						{
 							id: '2',
@@ -241,7 +293,7 @@
 							monthSale: '346',
 							rate: '88',
 							price: '30.99',
-							foodImg: 'https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg'
+							foodImg: 'https://fuss10.elemecdn.com/e/39/5193b213772beb42d2adeb87356c8png.png?imageMogr2/thumbnail/200x200/format/webp/quality/85'
 						},
 						{
 							id: '3',
@@ -250,7 +302,7 @@
 							monthSale: '576',
 							rate: '88',
 							price: '30.99',
-							foodImg: 'https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg'
+							foodImg: 'https://fuss10.elemecdn.com/3/1c/79876e9abb77a63117f9131295b69png.png?imageMogr2/thumbnail/200x200/format/webp/quality/85'
 						},
 						{
 							id: '4',
@@ -259,7 +311,7 @@
 							monthSale: '346',
 							rate: '88',
 							price: '30.99',
-							foodImg: 'https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg'
+							foodImg: 'https://fuss10.elemecdn.com/6/c0/ec14a60a476629cad8d1abf664e74png.png?imageMogr2/thumbnail/200x200/format/webp/quality/85'
 						},
 						{
 							id: '5',
@@ -268,7 +320,7 @@
 							monthSale: '576',
 							rate: '88',
 							price: '30.99',
-							foodImg: 'https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg'
+							foodImg: 'hhttps://fuss10.elemecdn.com/6/c0/ec14a60a476629cad8d1abf664e74png.png?imageMogr2/thumbnail/200x200/format/webp/quality/85'
 						},
 						{
 							id: '6',
@@ -277,7 +329,7 @@
 							monthSale: '346',
 							rate: '88',
 							price: '30.99',
-							foodImg: 'https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg'
+							foodImg: 'https://fuss10.elemecdn.com/3/dc/8c68b4a1f90e8dee17aa4c11e7cbapng.png?imageMogr2/thumbnail/200x200/format/webp/quality/85'
 						},
 					]
 				},
@@ -292,7 +344,7 @@
 							monthSale: '18',
 							rate: '18',
 							price: '18.88',
-							foodImg: 'https://gd3.alicdn.com/bao/uploaded/i3/TB17zXOGXXXXXbEXVXXXXXXXXXX_!!0-item_pic.jpg_220x220.jpg'
+							foodImg: 'https://fuss10.elemecdn.com/0/28/207b795f3155e4e72163dbc4e8ed4jpeg.jpeg?imageMogr2/thumbnail/200x200/format/webp/quality/85'
 						},
 						{
 							id: '8',
@@ -310,55 +362,55 @@
 							monthSale: '33',
 							rate: '88',
 							price: '18.88',
-							foodImg: 'https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg'
+							foodImg: 'https://fuss10.elemecdn.com/4/f3/16b203946f31719283cbf183749a2png.png?imageMogr2/thumbnail/200x200/format/webp/quality/85'
 						},
 					]
 				},
 				{
-					title: '主食',
+					title: '主餐',
 					description: '促销',
 					foods: [
 						{
 							id: '10',
-							name: '营养五香牛肉饭',
+							name: '鸡排咖喱饭',
 							description: '精品牛肉+牛肉丸一个+土豆+油豆皮+胡萝卜+米饭',
 							monthSale: '576',
 							rate: '88',
-							price: '30.99',
-							foodImg: 'https://gd3.alicdn.com/imgextra/i3/2265445951/TB2oXqUbFXXXXXIXXXXXXXXXXXX_!!2265445951.jpg_220x220.jpg'
+							price: '23.5',
+							foodImg: 'https://fuss10.elemecdn.com/2/9a/5365e126549f5f2707b06c1b89674jpeg.jpeg?imageMogr2/thumbnail/200x200/format/webp/quality/85'
 						},
 						{
 							id: '11',
-							name: '美味麻辣牛肉饭',
+							name: '照烧鸡排饭',
 							description: '精品牛肉+牛肉丸一个+土豆+油豆皮+胡萝卜+米饭',
 							monthSale: '346',
 							rate: '88',
-							price: '30.99',
-							foodImg: 'https://gd3.alicdn.com/imgextra/i3/2265445951/TB2oXqUbFXXXXXIXXXXXXXXXXXX_!!2265445951.jpg_220x220.jpg'
+							price: '20.5',
+							foodImg: 'https://fuss10.elemecdn.com/2/8b/4bee39af0bb2cd9b15aa0514d78e4png.png?imageMogr2/thumbnail/200x200/format/webp/quality/85'
 						},
 					]
 				},
 				{
-					title: '点心',
+					title: '串点',
 					description: '促销',
 					foods: [
 						{
 							id: '12',
-							name: '五香牛肉饭套餐',
+							name: '豪华组合',
 							description: '精品牛肉+牛肉丸一个+土豆+油豆皮+胡萝卜+米饭',
 							monthSale: '18',
 							rate: '18',
 							price: '18.88',
-							foodImg: 'https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg'
+							foodImg: 'https://fuss10.elemecdn.com/c/bd/186372fdc834938e899fa53569e09png.png?imageMogr2/thumbnail/200x200/format/webp/quality/85'
 						},
 						{
 							id: '13',
-							name: '麻辣牛肉饭套餐',
+							name: '丸美组合',
 							description: '精品秘制牛肉+牛肉丸一个+土豆+油豆皮+胡萝卜+米饭',
 							monthSale: '23',
 							rate: '88',
 							price: '18.88',
-							foodImg: 'https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg'
+							foodImg: 'https://fuss10.elemecdn.com/d/03/25a5d6aab0d5f0cd56a0d5af164e3jpeg.jpeg?imageMogr2/thumbnail/200x200/format/webp/quality/85'
 						},
 					]
 				},
@@ -368,21 +420,21 @@
 					foods: [
 						{
 							id: '14',
-							name: '营养五香牛肉饭',
+							name: '中可乐',
 							description: '精品牛肉+牛肉丸一个+土豆+油豆皮+胡萝卜+米饭',
 							monthSale: '576',
 							rate: '88',
-							price: '30.99',
-							foodImg: 'https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg'
+							price: '8',
+							foodImg: 'https://fuss10.elemecdn.com/d/9f/2675aed0e771cc626d82b0933c99cpng.png?imageMogr2/thumbnail/200x200/format/webp/quality/85'
 						},
 						{
 							id: '15',
-							name: '美味麻辣牛肉饭',
+							name: '中七喜',
 							description: '精品牛肉+牛肉丸一个+土豆+油豆皮+胡萝卜+米饭',
 							monthSale: '346',
 							rate: '88',
-							price: '30.99',
-							foodImg: 'https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg'
+							price: '8',
+							foodImg: 'https://fuss10.elemecdn.com/b/31/bd4adb167668fc0657835948e9979png.png?imageMogr2/thumbnail/200x200/format/webp/quality/85'
 						},
 					]
 				}
@@ -418,7 +470,10 @@
 							scrollElemIndex = scrollElemIndex + elem.foods.length;
 						}
 					}
+				}else if (index == 0) {
+					scrollElemIndex = 0;
 				}
+
 				this.showToast('scrollElemIndex = '+scrollElemIndex);
 
 				dom.scrollToElement(this.$el('item-'+scrollElemIndex), {offset: 0})
