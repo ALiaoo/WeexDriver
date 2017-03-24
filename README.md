@@ -40,6 +40,22 @@ npm run debug
 
 You can config more babel, ESLint and PostCSS plugins in `webpack.config.js`.
 
+## 语法
+| - | weex | vue |
+| ---- | ---- | ---- |
+| 生命周期 | ready: function() {}	 | mounted: function() {} |
+| 条件指令 | if="{{!foo}}" | v-if="!foo" |
+| 循环指令 | repeat="{{item in list}}" | v-for="item in list" |
+| 样式类名 | class="btn btn-{{type}}" | :class="['btn', 'btn-' + type]" |
+| 内联样式 | style="color:{{textColor}}" | :style="{ color: textColor }" |
+| 事件绑定| onclick="handler" | @click="handler" |
+| 原生事件 | onclick="xxx" | @click.native="xxx" |
+| 数据绑定 | src="{{rightItemSrc}}" | :src="rightItemSrc" |
+| 数据初始化 | data: { value: 'x' } | data: function() { return { value: 'x' } } |
+| 标签ID | id="xxx" | ref="xxx" |
+| 获取节点| this.$el('xxx') | this.$refs.xxx
+[详细请戳](http://www.cnblogs.com/hehey/p/6295482.html)
+
 ## done
 
 仿饿了么app商户食品页
